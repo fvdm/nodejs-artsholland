@@ -9,6 +9,33 @@ var app = {
 		key:	''
 	},
 	
+	// Event
+	event: function( cidn, ccb ) {
+		if( typeof cidn == 'function' ) {
+			app.talk( 'event', cidn )
+		} else if( typeof ccb == 'function' ) {
+			app.talk( 'event/'+ cidn, ccb )
+		} else {
+			return {
+				venue: function( fcb ) {
+					app.talk( 'event/'+ cidn +'/venue', fcb )
+				},
+				production: function( fcb ) {
+					app.talk( 'event/'+ cidn +'/production', fcb )
+				}),
+				room: function( fcb ) {
+					app.talk( 'event/'+ cidn +'/room', fcb )
+				}),
+				attachment: function( fcb ) {
+					app.talk( 'event/'+ cidn +'/attachment', fcb )
+				}),
+				offering: function( fcb ) {
+					app.talk( 'event/'+ cidn +'/offering', fcb )
+				})
+			}
+		}
+	},
+	
 	talk: function( path, fields, cb ) {
 		if( !cb && typeof fields == 'function' ) {
 			var cb = fields
