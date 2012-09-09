@@ -1,4 +1,6 @@
 nodejs-artsholland
 ==================
 
-API module for Arts Holland
+Unofficial API module for Arts Holland
+
+Docs: <http://dev.artsholland.com/documentation/restapi>
