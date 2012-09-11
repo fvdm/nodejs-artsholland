@@ -22,16 +22,24 @@ var app = {
 				},
 				production: function( fcb ) {
 					app.talk( 'event/'+ cidn +'/production', fcb )
-				}),
+				},
 				room: function( fcb ) {
 					app.talk( 'event/'+ cidn +'/room', fcb )
-				}),
+				},
 				attachment: function( fcb ) {
 					app.talk( 'event/'+ cidn +'/attachment', fcb )
-				}),
-				offering: function( fcb ) {
-					app.talk( 'event/'+ cidn +'/offering', fcb )
-				})
+				},
+				offering: function( name ) {
+					if( typeof name == 'function' ) {
+						app.talk( 'event/'+ cidn +'/offering', name )
+					} else if( typeof name == 'string' ) {
+						return {
+							price: function( fcb ) {
+								app.talk( 'event/'+ cidn +'/offering/'+ name +'/price', fcb )
+							}
+						}
+					}
+				}
 			}
 		}
 	},
