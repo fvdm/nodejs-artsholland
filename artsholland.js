@@ -50,7 +50,30 @@ var app = {
 			}
 		}
 	},
-		
+	
+	venue: function( cidn, ccb ) {
+		if( typeof cidn == 'function' ) {
+			app.talk( 'venue', cidn )
+		} else if( typeof ccb == 'function' ) {
+			app.talk( 'venue/'+ cidn, ccb )
+		} else {
+			return {
+				event: function( fcb ) {
+					app.talk( 'venue/'+ cidn +'/event', fcb )
+				},
+				production: function( fcb ) {
+					app.talk( 'venue/'+ cidn +'/production', fcb )
+				},
+				room: function( fcb ) {
+					app.talk( 'venue/'+ cidn +'/room', fcb )
+				},
+				attachment: function( fcb ) {
+					app.talk( 'venue/'+ cidn +'/attachment', fcb )
+				}
+			}
+		}
+	},
+	
 	production: function( cidn, ccb ) {
 		if( typeof cidn == 'function' ) {
 			app.talk( 'production', cidn )
