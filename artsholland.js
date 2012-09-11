@@ -51,6 +51,14 @@ var app = {
 		}
 	},
 	
+	genre: function( cb ) {
+		app.talk( 'genre', cb )
+	},
+	
+	venuetype: function( cb ) {
+		app.talk( 'venuetype', cb )
+	},
+	
 	talk: function( path, fields, cb ) {
 		if( !cb && typeof fields == 'function' ) {
 			var cb = fields
