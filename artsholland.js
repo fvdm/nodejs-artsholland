@@ -1,3 +1,10 @@
+/*
+Name:     nodejs-artsholland
+Source:   https://github.com/fvdm/nodejs-artsholland
+Feedback: https://github.com/fvdm/nodejs-artsholland/issues
+License:  Unlicense / Public Domain
+*/
+
 var http = require('http'),
     querystring = require('querystring')
 
@@ -83,3 +90,6 @@ var app = {
 		)
 	}
 }
+
+// export module
+module.exports = app
