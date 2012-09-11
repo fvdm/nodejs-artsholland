@@ -50,6 +50,23 @@ var app = {
 			}
 		}
 	},
+		
+	production: function( cidn, ccb ) {
+		if( typeof cidn == 'function' ) {
+			app.talk( 'production', cidn )
+		} else if( typeof ccb == 'function' ) {
+			app.talk( 'production/'+ cidn, ccb )
+		} else {
+			return {
+				event: function( fcb ) {
+					app.talk( 'production/'+ cidn +'/event', fcb )
+				},
+				venue: function( fcb ) {
+					app.talk( 'production/'+ cidn +'/venue', fcb )
+				}
+			}
+		}
+	},
 	
 	genre: function( cb ) {
 		app.talk( 'genre', cb )
