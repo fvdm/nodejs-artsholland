@@ -192,7 +192,8 @@ var app = {
 				path:	app.api.path + path +'?'+ fields,
 				method:	'GET',
 				headers: {
-					Accept:	'application/json'
+					'User-Agent':	'artsholland.js (https://github.com/fvdm/nodejs-artsholland)',
+					Accept:		'application/json'
 				}
 			},
 			function( response ) {
