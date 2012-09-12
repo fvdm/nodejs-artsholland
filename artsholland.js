@@ -129,19 +129,40 @@ var app = {
 		}
 	},
 	
-	production: function( cidn, ccb ) {
-		if( typeof cidn == 'function' ) {
-			app.talk( 'production', cidn )
-		} else if( typeof ccb == 'function' ) {
-			app.talk( 'production/'+ cidn, ccb )
-		} else {
+	// Production
+	production: function( one, two, three ) {
+		
+		if( typeof one == 'function' ) {
+			
+			// app.production( oneCallback )
+			app.talk( 'production', one )
+			
+		} else if( typeof one == 'object' && typeof two == 'function' ) {
+			
+			// app.production( oneFilter, twoCallback )
+			app.talk( 'production', one, two )
+			
+			
+		} else if( typeof one == 'string' && typeof two == 'function' ) {
+			
+			// app.production( oneCIDN, twoCallback )
+			app.talk( 'production/'+ one, two )
+			
+		} else if( typeof one == 'string' && two == undefined ) {
+			
+			// var production = app.production( oneCIDN )
 			return {
-				event: function( fcb ) {
-					app.talk( 'production/'+ cidn +'/event', fcb )
+				
+				// app.production( oneCIDN ).event( fourCallback )
+				event: function( four ) {
+					app.talk( 'production/'+ one +'/event', four )
 				},
-				venue: function( fcb ) {
-					app.talk( 'production/'+ cidn +'/venue', fcb )
+				
+				// app.production( oneCIDN ).production( fourCallback )
+				venue: function( four ) {
+					app.talk( 'production/'+ one +'/venue', four )
 				}
+				
 			}
 		}
 	},
