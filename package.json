@@ -1,0 +1,29 @@
+{
+  "author": {
+    "name":               "Franklin van de Meent",
+    "email":              "fr@nkl.in",
+    "url":                "http://frankl.in"
+  },
+  "name":                 "artsholland",
+  "description":          "Access the Arts Holland API",
+  "version":              "1.0.0",
+  "repository": {
+    "type":               "git",
+    "url":                "git://github.com/fvdm/nodejs-artsholland.git"
+  },
+  "bugs": {
+    "url":                "https://github.com/fvdm/nodejs-artsholland/issues"
+  },
+  "main":                 "artsholland.js",
+  "dependencies":         {},
+  "devDependencies":      {},
+  "optionalDependencies": {},
+  "engines": {
+    "node":               "*"
+  },
+  "keywords":             ["artsholland", "api", "middleware", "culture", "tourism"],
+  "license": {
+    "type":               "Public Domain",
+    "url":                "https://github.com/fvdm/nodejs-artsholland/raw/master/UNLICENSE"
+  }
+}
