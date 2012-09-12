@@ -81,25 +81,50 @@ var app = {
 		}
 	},
 	
-	venue: function( cidn, ccb ) {
-		if( typeof cidn == 'function' ) {
-			app.talk( 'venue', cidn )
-		} else if( typeof ccb == 'function' ) {
-			app.talk( 'venue/'+ cidn, ccb )
-		} else {
+	// Venue
+	venue: function( one, two, three ) {
+		
+		if( typeof one == 'function' ) {
+			
+			// app.venue( oneCallback )
+			app.talk( 'venue', one )
+			
+		} else if( typeof one == 'object' && typeof two == 'function' ) {
+			
+			// app.venue( oneFilter, twoCallback )
+			app.talk( 'venue', one, two )
+			
+			
+		} else if( typeof one == 'string' && typeof two == 'function' ) {
+			
+			// app.venue( oneCIDN, twoCallback )
+			app.talk( 'venue/'+ one, two )
+			
+		} else if( typeof one == 'string' && two == undefined ) {
+			
+			// var venue = app.venue( oneCIDN )
 			return {
-				event: function( fcb ) {
-					app.talk( 'venue/'+ cidn +'/event', fcb )
+				
+				// app.venue( oneCIDN ).event( fourCallback )
+				event: function( four ) {
+					app.talk( 'venue/'+ one +'/event', four )
 				},
-				production: function( fcb ) {
-					app.talk( 'venue/'+ cidn +'/production', fcb )
+				
+				// app.venue( oneCIDN ).production( fourCallback )
+				production: function( four ) {
+					app.talk( 'venue/'+ one +'/production', four )
 				},
-				room: function( fcb ) {
-					app.talk( 'venue/'+ cidn +'/room', fcb )
+				
+				// app.venue( oneCIDN ).room( fourCallback )
+				room: function( four ) {
+					app.talk( 'venue/'+ one +'/room', four )
 				},
-				attachment: function( fcb ) {
-					app.talk( 'venue/'+ cidn +'/attachment', fcb )
+				
+				// app.venue( oneCIDN ).attachment( fourCallback )
+				attachment: function( four ) {
+					app.talk( 'venue/'+ one +'/attachment', four )
 				}
+				
 			}
 		}
 	},
