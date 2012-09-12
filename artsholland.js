@@ -143,7 +143,10 @@ var app = {
 				host:	app.api.host,
 				port:	80,
 				path:	app.api.path + path +'?'+ fields,
-				method:	'GET'
+				method:	'GET',
+				headers: {
+					Accept:	'application/json'
+				}
 			},
 			function( response ) {
 				var len = response.headers['content-length'],
