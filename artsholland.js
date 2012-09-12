@@ -17,33 +17,63 @@ var app = {
 	},
 	
 	// Event
-	event: function( cidn, ccb ) {
-		if( typeof cidn == 'function' ) {
-			app.talk( 'event', cidn )
-		} else if( typeof ccb == 'function' ) {
-			app.talk( 'event/'+ cidn, ccb )
-		} else {
+	event: function( one, two, three ) {
+		
+		if( typeof one == 'function' ) {
+			
+			// app.event( oneCallback )
+			app.talk( 'event', one )
+			
+		} else if( typeof one == 'object' && typeof two == 'function' ) {
+			
+			// app.event( oneFilter, twoCallback )
+			app.talk( 'event', one, two )
+			
+			
+		} else if( typeof one == 'string' && typeof two == 'function' ) {
+			
+			// app.event( oneCIDN, twoCallback )
+			app.talk( 'event/'+ one, two )
+			
+		} else if( typeof one == 'string' && two == undefined ) {
+			
+			// var event = app.event( oneCIDN )
 			return {
-				venue: function( fcb ) {
-					app.talk( 'event/'+ cidn +'/venue', fcb )
+				
+				// app.event( oneCIDN ).venue( fourCallback )
+				venue: function( four ) {
+					app.talk( 'event/'+ one +'/venue', four )
 				},
-				production: function( fcb ) {
-					app.talk( 'event/'+ cidn +'/production', fcb )
+				
+				// app.event( oneCIDN ).production( fourCallback )
+				production: function( four ) {
+					app.talk( 'event/'+ one +'/production', four )
 				},
-				room: function( fcb ) {
-					app.talk( 'event/'+ cidn +'/room', fcb )
+				
+				// app.event( oneCIDN ).room( fourCallback )
+				room: function( four ) {
+					app.talk( 'event/'+ one +'/room', four )
 				},
-				attachment: function( fcb ) {
-					app.talk( 'event/'+ cidn +'/attachment', fcb )
+				
+				// app.event( oneCIDN ).attachment( fourCallback )
+				attachment: function( four ) {
+					app.talk( 'event/'+ one +'/attachment', four )
 				},
-				offering: function( name ) {
-					if( typeof name == 'function' ) {
-						app.talk( 'event/'+ cidn +'/offering', name )
-					} else if( typeof name == 'string' ) {
+				
+				offering: function( four ) {
+					if( typeof four == 'function' ) {
+						
+						// app.event( oneCIDN ).offering( fourCallback )
+						app.talk( 'event/'+ one +'/offering', four )
+						
+					} else if( typeof four == 'string' ) {
 						return {
+							
+							// app.event( oneCIDN ).offering( fourName ).price( fiveCallback )
 							price: function( fcb ) {
-								app.talk( 'event/'+ cidn +'/offering/'+ name +'/price', fcb )
+								app.talk( 'event/'+ one +'/offering/'+ four +'/price', five )
 							}
+							
 						}
 					}
 				}
