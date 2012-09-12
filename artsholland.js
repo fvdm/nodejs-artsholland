@@ -129,6 +129,7 @@ var app = {
 		app.talk( 'venuetype', cb )
 	},
 	
+	// Communicate
 	talk: function( path, fields, cb ) {
 		if( !cb && typeof fields == 'function' ) {
 			var cb = fields
@@ -138,7 +139,7 @@ var app = {
 		fields.apiKey = app.api.key
 		fields = querystring.stringify( fields )
 		
-		var req = http.request(
+		http.request(
 			{
 				host:	app.api.host,
 				port:	80,
@@ -149,26 +150,16 @@ var app = {
 				}
 			},
 			function( response ) {
-				var len = response.headers['content-length'],
-				    data = '',
-				    done = false
-				    
-				response.on( 'data', function( chunk ) {
-					data += chunk
-					if( Buffer.byteLength( data ) == len ) {
-						done = true
-						cb( JSON.parse( data.toString('utf8') ) )
-						req.end()
+				var data = ''
+				response.on( 'data', function( chunk ) { data += chunk })
+				response.on( 'end', function() {
+					data = data.toString('utf8')
+					if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
+						cb( JSON.parse( data ) )
 					}
 				})
-				
-				response.on( 'end', function() {
-					if( !done ) {
-						cb( JSON.parse( data.toString('utf8') ) )
-					}
-				)}
 			}
-		)
+		).end()
 	}
 }
 
