@@ -241,6 +241,8 @@ function talk( path, fields, cb ) {
 				if( ! data.match( /^(\{.*\}|\[.*\])$/ ) ) {
 					err = new Error('not json')
 					err.responseBody = data
+				} else {
+					data = JSON.parse( data )
 				}
 			} else {
 				// no data
