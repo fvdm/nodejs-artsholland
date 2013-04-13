@@ -250,6 +250,12 @@ function talk( path, fields, cb ) {
 				err.responseBody = null
 			}
 			
+			// HTTP status
+			if( response.statusCode !== 200 ) {
+				err = new Error('http error')
+				err.responseBody = data
+			}
+			
 			// do callback
 			if( err instanceof Error ) {
 				err.request = options
