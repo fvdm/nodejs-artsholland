@@ -8,9 +8,10 @@ License:  Unlicense / Public Domain
 var http = require('http'),
     querystring = require('querystring')
 
-module.exports.api: {
-	key:	''
-}
+
+// API key
+module.exports.apikey = ''
+
 
 // Event
 module.exports.event = function( one, two, three ) {
@@ -189,7 +190,7 @@ function talk( path, fields, cb ) {
 	}
 	
 	// build request
-	fields.apiKey = app.api.key
+	fields.apiKey = module.exports.apikey
 	fields = querystring.stringify( fields )
 	
 	var options = {
