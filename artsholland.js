@@ -11,8 +11,6 @@ var http = require('http'),
 var app = {
 
 	api: {
-		host:	'api.artsholland.com',
-		path:	'/rest/',
 		key:	''
 	},
 	
@@ -22,18 +20,18 @@ var app = {
 		if( typeof one == 'function' ) {
 			
 			// app.event( oneCallback )
-			app.talk( 'event', one )
+			talk( 'event', one )
 			
 		} else if( typeof one == 'object' && typeof two == 'function' ) {
 			
 			// app.event( oneFilter, twoCallback )
-			app.talk( 'event', one, two )
+			talk( 'event', one, two )
 			
 			
 		} else if( typeof one == 'string' && typeof two == 'function' ) {
 			
 			// app.event( oneCIDN, twoCallback )
-			app.talk( 'event/'+ one, two )
+			talk( 'event/'+ one, two )
 			
 		} else if( typeof one == 'string' && two == undefined ) {
 			
@@ -42,36 +40,36 @@ var app = {
 				
 				// app.event( oneCIDN ).venue( fourCallback )
 				venue: function( four ) {
-					app.talk( 'event/'+ one +'/venue', four )
+					talk( 'event/'+ one +'/venue', four )
 				},
 				
 				// app.event( oneCIDN ).production( fourCallback )
 				production: function( four ) {
-					app.talk( 'event/'+ one +'/production', four )
+					talk( 'event/'+ one +'/production', four )
 				},
 				
 				// app.event( oneCIDN ).room( fourCallback )
 				room: function( four ) {
-					app.talk( 'event/'+ one +'/room', four )
+					talk( 'event/'+ one +'/room', four )
 				},
 				
 				// app.event( oneCIDN ).attachment( fourCallback )
 				attachment: function( four ) {
-					app.talk( 'event/'+ one +'/attachment', four )
+					talk( 'event/'+ one +'/attachment', four )
 				},
 				
 				offering: function( four ) {
 					if( typeof four == 'function' ) {
 						
 						// app.event( oneCIDN ).offering( fourCallback )
-						app.talk( 'event/'+ one +'/offering', four )
+						talk( 'event/'+ one +'/offering', four )
 						
 					} else if( typeof four == 'string' ) {
 						return {
 							
 							// app.event( oneCIDN ).offering( fourName ).price( fiveCallback )
 							price: function( fcb ) {
-								app.talk( 'event/'+ one +'/offering/'+ four +'/price', five )
+								talk( 'event/'+ one +'/offering/'+ four +'/price', five )
 							}
 							
 						}
@@ -87,18 +85,18 @@ var app = {
 		if( typeof one == 'function' ) {
 			
 			// app.venue( oneCallback )
-			app.talk( 'venue', one )
+			talk( 'venue', one )
 			
 		} else if( typeof one == 'object' && typeof two == 'function' ) {
 			
 			// app.venue( oneFilter, twoCallback )
-			app.talk( 'venue', one, two )
+			talk( 'venue', one, two )
 			
 			
 		} else if( typeof one == 'string' && typeof two == 'function' ) {
 			
 			// app.venue( oneCIDN, twoCallback )
-			app.talk( 'venue/'+ one, two )
+			talk( 'venue/'+ one, two )
 			
 		} else if( typeof one == 'string' && two == undefined ) {
 			
@@ -107,22 +105,22 @@ var app = {
 				
 				// app.venue( oneCIDN ).event( fourCallback )
 				event: function( four ) {
-					app.talk( 'venue/'+ one +'/event', four )
+					talk( 'venue/'+ one +'/event', four )
 				},
 				
 				// app.venue( oneCIDN ).production( fourCallback )
 				production: function( four ) {
-					app.talk( 'venue/'+ one +'/production', four )
+					talk( 'venue/'+ one +'/production', four )
 				},
 				
 				// app.venue( oneCIDN ).room( fourCallback )
 				room: function( four ) {
-					app.talk( 'venue/'+ one +'/room', four )
+					talk( 'venue/'+ one +'/room', four )
 				},
 				
 				// app.venue( oneCIDN ).attachment( fourCallback )
 				attachment: function( four ) {
-					app.talk( 'venue/'+ one +'/attachment', four )
+					talk( 'venue/'+ one +'/attachment', four )
 				}
 				
 			}
@@ -135,18 +133,18 @@ var app = {
 		if( typeof one == 'function' ) {
 			
 			// app.production( oneCallback )
-			app.talk( 'production', one )
+			talk( 'production', one )
 			
 		} else if( typeof one == 'object' && typeof two == 'function' ) {
 			
 			// app.production( oneFilter, twoCallback )
-			app.talk( 'production', one, two )
+			talk( 'production', one, two )
 			
 			
 		} else if( typeof one == 'string' && typeof two == 'function' ) {
 			
 			// app.production( oneCIDN, twoCallback )
-			app.talk( 'production/'+ one, two )
+			talk( 'production/'+ one, two )
 			
 		} else if( typeof one == 'string' && two == undefined ) {
 			
@@ -155,60 +153,93 @@ var app = {
 				
 				// app.production( oneCIDN ).event( fourCallback )
 				event: function( four ) {
-					app.talk( 'production/'+ one +'/event', four )
+					talk( 'production/'+ one +'/event', four )
 				},
 				
 				// app.production( oneCIDN ).production( fourCallback )
 				venue: function( four ) {
-					app.talk( 'production/'+ one +'/venue', four )
+					talk( 'production/'+ one +'/venue', four )
 				}
 				
 			}
 		}
 	},
 	
-	genre: function( cb ) {
-		app.talk( 'genre', cb )
+	genre: function( filters, cb ) {
+		talk( 'genre', filters, cb )
 	},
 	
-	venuetype: function( cb ) {
-		app.talk( 'venuetype', cb )
-	},
-	
-	// Communicate
-	talk: function( path, fields, cb ) {
-		if( !cb && typeof fields == 'function' ) {
-			var cb = fields
-			var fields = {}
-		}
-		
-		fields.apiKey = app.api.key
-		fields = querystring.stringify( fields )
-		
-		http.request(
-			{
-				host:	app.api.host,
-				port:	80,
-				path:	app.api.path + path +'?'+ fields,
-				method:	'GET',
-				headers: {
-					'User-Agent':	'artsholland.js (https://github.com/fvdm/nodejs-artsholland)',
-					Accept:		'application/json'
-				}
-			},
-			function( response ) {
-				var data = ''
-				response.on( 'data', function( chunk ) { data += chunk })
-				response.on( 'end', function() {
-					data = data.toString('utf8')
-					if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
-						cb( JSON.parse( data ) )
-					}
-				})
-			}
-		).end()
+	venuetype: function( filters, cb ) {
+		talk( 'venuetype', filters, cb )
 	}
 }
+
+
+// Communicate
+function talk( path, fields, cb ) {
+	if( !cb && typeof fields == 'function' ) {
+		var cb = fields
+		var fields = {}
+	}
+	
+	// prevent multiple callbacks
+	var complete = false
+	var doCallback = function( err, data ) {
+		if( ! complete ) {
+			complete = true
+			cb( err, data )
+		}
+	}
+	
+	// build request
+	fields.apiKey = app.api.key
+	fields = querystring.stringify( fields )
+	
+	var options = {
+		host:	'api.artsholland.com',
+		path:	'/rest/'+ path +'?'+ fields,
+		method:	'GET',
+		headers: {
+			'User-Agent':	'artsholland.js (https://github.com/fvdm/nodejs-artsholland)',
+			Accept:		'application/json'
+		}
+	}
+	
+	var request = http.request( options )
+	
+	// process response
+	request.on( 'response', function( response ) {
+		var data = []
+		var size = 0
+		
+		response.on( 'data', function( chunk ) {
+			data.push( chunk )
+			size += chunk.length
+		})
+		
+		response.on( 'end', function() {
+			if( data.length >= 0 ) {
+				var buf = new Buffer( size )
+				var pos = 0;
+				
+				for( var d in data ) {
+					data[d].copy( buf, pos )
+					pos += data[d].length
+				}
+				
+				data = buf.toString().trim()
+				
+				if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
+					doCallback( JSON.parse( data ) )
+				}
+			}
+		})
+	})
+	
+	// complete request
+	request.end()
+}
+
 
 // export module
 module.exports = app
