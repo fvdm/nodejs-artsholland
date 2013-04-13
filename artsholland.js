@@ -215,6 +215,13 @@ function talk( path, fields, cb ) {
 			size += chunk.length
 		})
 		
+		response.on( 'close', function() {
+			var err = new Error('request dropped')
+			err.responseCode = response.statusCode || null
+			err.responseHeaders = response.headers || null
+			doCallback( err )
+		})
+		
 		response.on( 'end', function() {
 			if( data.length >= 0 ) {
 				var buf = new Buffer( size )
