@@ -223,6 +223,8 @@ function talk( path, fields, cb ) {
 		})
 		
 		response.on( 'end', function() {
+			var err = null
+			
 			if( data.length >= 0 ) {
 				var buf = new Buffer( size )
 				var pos = 0;
@@ -237,6 +239,16 @@ function talk( path, fields, cb ) {
 				if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
 					doCallback( null, JSON.parse( data ) )
 				}
+			}
+			
+			// do callback
+			if( err instanceof Error ) {
+				err.request = options
+				err.responseCode = response.statusCode || null
+				err.responseHeaders = response.headers || null
+				doCallback( err )
+			} else {
+				doCallback( null, data )
 			}
 		})
 	})
