@@ -236,6 +236,14 @@ function talk( path, fields, cb ) {
 		})
 	})
 	
+	// request error
+	request.on( 'error', function( error ) {
+		var err = new Error('request error')
+		err.requestError = error
+		err.request = options
+		doCallback( err )
+	})
+	
 	// complete request
 	request.end()
 }
