@@ -21,7 +21,7 @@
   "engines": {
     "node":               "*"
   },
-  "keywords":             ["artsholland", "api", "middleware", "culture", "tourism"],
+  "keywords":             ["artsholland", "api", "culture", "tourism", "art", "NL"],
   "license": {
     "type":               "Public Domain",
     "url":                "https://github.com/fvdm/nodejs-artsholland/raw/master/UNLICENSE"
