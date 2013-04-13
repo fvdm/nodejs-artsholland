@@ -236,8 +236,10 @@ function talk( path, fields, cb ) {
 				
 				data = buf.toString().trim()
 				
-				if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
-					doCallback( null, JSON.parse( data ) )
+				// validate
+				if( ! data.match( /^(\{.*\}|\[.*\])$/ ) ) {
+					err = new Error('not json')
+					err.responseBody = data
 				}
 			} else {
 				// no data
