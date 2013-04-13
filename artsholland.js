@@ -226,6 +226,7 @@ function talk( path, fields, cb ) {
 			var err = null
 			
 			if( data.length >= 0 ) {
+				// process buffer
 				var buf = new Buffer( size )
 				var pos = 0;
 				
