@@ -18,41 +18,41 @@ module.exports.event = function( one, two, three ) {
 	
 	if( typeof one == 'function' ) {
 		
-		// app.event( oneCallback )
+		// event( oneCallback )
 		talk( 'event', one )
 		
 	} else if( typeof one == 'object' && typeof two == 'function' ) {
 		
-		// app.event( oneFilter, twoCallback )
+		// event( oneFilter, twoCallback )
 		talk( 'event', one, two )
 		
 		
 	} else if( typeof one == 'string' && typeof two == 'function' ) {
 		
-		// app.event( oneCIDN, twoCallback )
+		// event( oneCIDN, twoCallback )
 		talk( 'event/'+ one, two )
 		
 	} else if( typeof one == 'string' && two == undefined ) {
 		
-		// var event = app.event( oneCIDN )
+		// var event = event( oneCIDN )
 		return {
 			
-			// app.event( oneCIDN ).venue( fourCallback )
+			// event( oneCIDN ).venue( fourCallback )
 			venue: function( four ) {
 				talk( 'event/'+ one +'/venue', four )
 			},
 			
-			// app.event( oneCIDN ).production( fourCallback )
+			// event( oneCIDN ).production( fourCallback )
 			production: function( four ) {
 				talk( 'event/'+ one +'/production', four )
 			},
 			
-			// app.event( oneCIDN ).room( fourCallback )
+			// event( oneCIDN ).room( fourCallback )
 			room: function( four ) {
 				talk( 'event/'+ one +'/room', four )
 			},
 			
-			// app.event( oneCIDN ).attachment( fourCallback )
+			// event( oneCIDN ).attachment( fourCallback )
 			attachment: function( four ) {
 				talk( 'event/'+ one +'/attachment', four )
 			},
@@ -60,13 +60,13 @@ module.exports.event = function( one, two, three ) {
 			offering: function( four ) {
 				if( typeof four == 'function' ) {
 					
-					// app.event( oneCIDN ).offering( fourCallback )
+					// event( oneCIDN ).offering( fourCallback )
 					talk( 'event/'+ one +'/offering', four )
 					
 				} else if( typeof four == 'string' ) {
 					return {
 						
-						// app.event( oneCIDN ).offering( fourName ).price( fiveCallback )
+						// event( oneCIDN ).offering( fourName ).price( fiveCallback )
 						price: function( fcb ) {
 							talk( 'event/'+ one +'/offering/'+ four +'/price', five )
 						}
@@ -83,41 +83,41 @@ module.exports.venue = function( one, two, three ) {
 	
 	if( typeof one == 'function' ) {
 		
-		// app.venue( oneCallback )
+		// venue( oneCallback )
 		talk( 'venue', one )
 		
 	} else if( typeof one == 'object' && typeof two == 'function' ) {
 		
-		// app.venue( oneFilter, twoCallback )
+		// venue( oneFilter, twoCallback )
 		talk( 'venue', one, two )
 		
 		
 	} else if( typeof one == 'string' && typeof two == 'function' ) {
 		
-		// app.venue( oneCIDN, twoCallback )
+		// venue( oneCIDN, twoCallback )
 		talk( 'venue/'+ one, two )
 		
 	} else if( typeof one == 'string' && two == undefined ) {
 		
-		// var venue = app.venue( oneCIDN )
+		// var venue = venue( oneCIDN )
 		return {
 			
-			// app.venue( oneCIDN ).event( fourCallback )
+			// venue( oneCIDN ).event( fourCallback )
 			event: function( four ) {
 				talk( 'venue/'+ one +'/event', four )
 			},
 			
-			// app.venue( oneCIDN ).production( fourCallback )
+			// venue( oneCIDN ).production( fourCallback )
 			production: function( four ) {
 				talk( 'venue/'+ one +'/production', four )
 			},
 			
-			// app.venue( oneCIDN ).room( fourCallback )
+			// venue( oneCIDN ).room( fourCallback )
 			room: function( four ) {
 				talk( 'venue/'+ one +'/room', four )
 			},
 			
-			// app.venue( oneCIDN ).attachment( fourCallback )
+			// venue( oneCIDN ).attachment( fourCallback )
 			attachment: function( four ) {
 				talk( 'venue/'+ one +'/attachment', four )
 			}
@@ -131,31 +131,31 @@ module.exports.production = function( one, two, three ) {
 	
 	if( typeof one == 'function' ) {
 		
-		// app.production( oneCallback )
+		// production( oneCallback )
 		talk( 'production', one )
 		
 	} else if( typeof one == 'object' && typeof two == 'function' ) {
 		
-		// app.production( oneFilter, twoCallback )
+		// production( oneFilter, twoCallback )
 		talk( 'production', one, two )
 		
 		
 	} else if( typeof one == 'string' && typeof two == 'function' ) {
 		
-		// app.production( oneCIDN, twoCallback )
+		// production( oneCIDN, twoCallback )
 		talk( 'production/'+ one, two )
 		
 	} else if( typeof one == 'string' && two == undefined ) {
 		
-		// var production = app.production( oneCIDN )
+		// var production = production( oneCIDN )
 		return {
 			
-			// app.production( oneCIDN ).event( fourCallback )
+			// production( oneCIDN ).event( fourCallback )
 			event: function( four ) {
 				talk( 'production/'+ one +'/event', four )
 			},
 			
-			// app.production( oneCIDN ).production( fourCallback )
+			// production( oneCIDN ).production( fourCallback )
 			venue: function( four ) {
 				talk( 'production/'+ one +'/venue', four )
 			}
