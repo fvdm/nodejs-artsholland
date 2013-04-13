@@ -239,6 +239,10 @@ function talk( path, fields, cb ) {
 				if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
 					doCallback( null, JSON.parse( data ) )
 				}
+			} else {
+				// no data
+				err = new Error('invalid response')
+				err.responseBody = null
 			}
 			
 			// do callback
