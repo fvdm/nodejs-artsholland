@@ -230,7 +230,7 @@ function talk( path, fields, cb ) {
 				data = buf.toString().trim()
 				
 				if( data.match( /^(\{.*\}|\[.*\])$/ ) ) {
-					doCallback( JSON.parse( data ) )
+					doCallback( null, JSON.parse( data ) )
 				}
 			}
 		})
