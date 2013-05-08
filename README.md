@@ -6,14 +6,16 @@ Unofficial API module for Arts Holland
 Docs: <http://dev.artsholland.com/documentation/restapi>
 
 
-# BETA notice
+BETA notice
+-----------
+
 This is beta software. Both the remote API and this module are still in early development, the methods may produce unexpected results.
 
 
-# Usage
+Usage
+-----
 
-
-## event ( callback )
+### event ( callback )
 
 Lists and describes all events.
 
@@ -22,7 +24,7 @@ app.event( console.log )
 ```
 
 
-## event ( cidn, callback )
+### event ( cidn, callback )
 
 Describe event with `cidn`.
 
@@ -30,11 +32,13 @@ Describe event with `cidn`.
 app.event( 123, console.log )
 ```
 
-## event ( cidn )
+
+### event ( cidn )
 
 Returns an object with the following functions:
 
-### event().venue( callback )
+
+### event().venue ( callback )
 
 Lists and describes all venues in which event with `cidn` takes place.
 
@@ -43,7 +47,8 @@ app.event( 123 ).venue( console.log )
 ```
 
 
-# Unlicense
+Unlicense
+---------
 
 <https://github.com/fvdm/nodejs-artsholland/blob/master/UNLICENSE>
 
