@@ -15,6 +15,9 @@
     "url":                "https://github.com/fvdm/nodejs-artsholland/issues"
   },
   "main":                 "artsholland.js",
+  "scripts": {
+    "preinstall":         "node deprecated.js"
+  },
   "dependencies":         {},
   "devDependencies":      {},
   "optionalDependencies": {},
