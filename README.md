@@ -6,10 +6,11 @@ Unofficial API module for Arts Holland
 Docs: <http://dev.artsholland.com/documentation/restapi>
 
 
-BETA notice
------------
+DEPRECATED
+----------
 
-This is beta software. Both the remote API and this module are still in early development, the methods may produce unexpected results.
+The Arts Holland API is no longer available rendering this module useless.
+All methods provided with this module will fail.
 
 
 Usage
