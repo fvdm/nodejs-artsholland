@@ -16,7 +16,8 @@
   },
   "main":                 "artsholland.js",
   "scripts": {
-    "preinstall":         "node deprecated.js"
+    "preinstall":         "node deprecated.js",
+    "test":               "echo 'Error: no test specified'; exit 1"
   },
   "dependencies":         {},
   "devDependencies":      {},
