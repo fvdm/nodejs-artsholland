@@ -3,6 +3,8 @@ artsholland
 
 Unofficial API module for Arts Holland
 
+[![Build Status](https://travis-ci.org/fvdm/nodejs-artsholland.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-artsholland)
+
 Docs: <http://dev.artsholland.com/documentation/restapi>
 
 
